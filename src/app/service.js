@@ -1,6 +1,8 @@
+const KEY = '27630557-6366d2fab585386447c9ca515';
+const BASE_URL = 'https://pixabay.com/api/';
 export const fetchImages = ({ imagesName, currentPage }) => {
   return fetch(
-    `https://pixabay.com/api/?q=${imagesName}&page=${currentPage}&key=25767240-90986d6ba668a96ce49d502f6&image_type=photo&orientation=horizontal&per_page=12`
+    `${BASE_URL}?q=${imagesName}&page=${currentPage}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12`
   ).then(response => {
     return response.json();
   });
