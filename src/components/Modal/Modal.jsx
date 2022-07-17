@@ -1,48 +1,36 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { createPortal } from 'react-dom';
+import React, {Component} from 'react';
+
+
 import styles from './Modal.module.css';
 
-const modalRoot = document.querySelector('#modal-root');
-
 class Modal extends Component {
-  state = {};
-
+  
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keydown', this.onCloseModuleByESC)
   }
-
+ 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keydown', this.onCloseModuleByESC)
   }
 
-  handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      this.props.onClose();
-    }
-  };
+  onCloseModuleByESC = (e) => {
+    if (e.keyCode === 27) this.props.handleTogleModal('','')
+  }
 
-  handleBackdropClick = e => {
-    if (e.currentTarget === e.target) {
-      this.props.onClose();
-    }
-  };
+  render () {
+    const {modalImg, modalTags, handleTogleModal} = this.props;
+    return (
 
-  render() {
-    return createPortal(
-      <div className={styles.Overlay} onClick={this.handleBackdropClick}>
+      <div className={styles.Overlay} 
+            onClick={(e) => {if (e.target === e.currentTarget) handleTogleModal('','')}}
+          >
         <div className={styles.Modal}>
-          <img src={this.props.currentImageSrc} alt="" />
+          <img src={modalImg} alt={modalTags} />
+           onClick={() => handleTogleModal('','')} 
         </div>
-      </div>,
-      modalRoot
-    );
+      </div>
+    )
   }
 }
-
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  currentImageSrc: PropTypes.string.isRequired,
-};
 
 export default Modal;

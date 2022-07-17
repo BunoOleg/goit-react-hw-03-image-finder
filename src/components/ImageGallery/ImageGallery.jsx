@@ -1,12 +1,18 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+import ImageGalleryItem from 'components/ImageGalleryItem';
 import styles from './ImageGallery.module.css';
 
-const ImageGallery = ({ children }) => {
-  return <ul className={styles.ImageGallery}>{children}</ul>;
-};
-
-ImageGallery.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.shape),
-};
-
-export default ImageGallery;
+export default function ImageGallery({currentItems, handleTogleModal,}) {
+  
+  return (
+    <ul className={styles.ImageGallery}>
+      {currentItems.map(({id, webformatURL,tags, largeImageURL}) => (<ImageGalleryItem 
+        key = {id}
+        img = {webformatURL}
+        tags = {tags}
+        modalImg = {largeImageURL}
+        handleTogleModal = {handleTogleModal}
+      />))}
+    </ul>    
+  )
+}

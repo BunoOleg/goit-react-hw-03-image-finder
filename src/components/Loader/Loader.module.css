@@ -1,12 +1,5 @@
 .Loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.Text {
-    font-weight: 700;
-    font-size: 30px;
-    color: #807e7e;
+    width: 50px;
+        height: 50px;
+        margin: 15px auto 0 auto;
 }

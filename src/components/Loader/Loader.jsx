@@ -1,24 +1,22 @@
+import { ThreeCircles } from 'react-loader-spinner';
 import styles from './Loader.module.css';
-import PropTypes from 'prop-types';
-import { BallTriangle } from 'react-loader-spinner';
+
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
-const Loader = ({ searchQuery }) => {
+function Loader() {
   return (
     <div className={styles.Loader}>
-      <BallTriangle
-        height="200"
-        width="200"
-        color="#3f51b5"
-        ariaLabel="loading"
-      />
-      <p className={styles.Text}>Searching results for {searchQuery}</p>
+      <ThreeCircles
+        margin-left = {500}
+        color="red"
+        outerCircleColor="blue" 
+        innerCircleColor="green" 
+        height={50}
+        width={50}
+        ariaLabel="three-circles-rotating"
+      /> 
     </div>
   );
-};
-
-Loader.propTypes = {
-  searchQuery: PropTypes.string.isRequired,
-};
+}
 
 export default Loader;

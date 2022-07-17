@@ -1,28 +1,11 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ result, onClick, modalSrcFetcher }) => {
+export default function ImageGalleryItem({img, tags, modalImg, handleTogleModal}) {
+
   return (
-    <li className={styles.ImageGalleryItem} onClick={onClick}>
-      <img
-        src={result.webformatURL}
-        alt={result.tags}
-        className={styles.ImageGalleryItemImage}
-        onClick={modalSrcFetcher}
-        srcSet={result.largeImageURL}
-      />
+    <li className={styles.ImageGalleryItem} onClick = {() => handleTogleModal(modalImg, tags)}>
+      <img src={img} alt={tags} className={styles.ImageGalleryItemImage}/>
     </li>
-  );
-};
-
-ImageGalleryItem.propTypes = {
-  result: PropTypes.shape({
-    webformatURL: PropTypes.string.isRequired,
-    tags: PropTypes.string.isRequired,
-    largeImageURL: PropTypes.string.isRequired,
-  }),
-  onClick: PropTypes.func.isRequired,
-  modalSrcFetcher: PropTypes.func.isRequired,
-};
-
-export default ImageGalleryItem;
+  )
+}
